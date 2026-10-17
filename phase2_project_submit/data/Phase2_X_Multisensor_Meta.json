@@ -1,0 +1,111 @@
+{
+  "experiment": "Phase2_X_multisensor",
+  "direction": "X",
+  "force_configuration": "[F_X(t), 0, 0]",
+  "n_samples": 10000,
+  "start_time_seconds": 0.001,
+  "end_time_seconds": 10.0,
+  "duration_seconds": 9.999,
+  "dt_seconds": 0.0010000000000000009,
+  "total_structural_mass_kg": 78500.0,
+  "post26": {
+    "required_variables": 16,
+    "allocated_numvar": 50
+  },
+  "reference_coordinate": {
+    "sensor": "S_C07",
+    "node_id": 3461,
+    "direction": "X",
+    "reference_mode": 1,
+    "phi_reference": 0.0040395531850456285,
+    "natural_frequency_hz": 20.083511908707504,
+    "equivalent_generalized_mass_kg": 61282.057655068886,
+    "equivalent_generalized_stiffness_N_per_m": 975826015.1860691,
+    "modal_source_file": "D:\\AnsysPinn\\model1 data ectraction\\modal_purity_diagnostic.json"
+  },
+  "training_fusion_sensors": [
+    "S_C02",
+    "S_C05",
+    "S_C07",
+    "S_C08"
+  ],
+  "hidden_validation_sensor": "S_C06",
+  "sensors": {
+    "S_C02": {
+      "node_id": 3514,
+      "role": "training_fusion",
+      "displacement_range_m": 8.054208996590001e-05,
+      "peak_displacement_m": 4.0517160472e-05,
+      "rms_displacement_m": 1.966553255344207e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999995749541688,
+      "acceleration_derivative_correlation": 0.9983874907091231,
+      "correlation_to_reference_displacement": 0.9999999791160967
+    },
+    "S_C05": {
+      "node_id": 3402,
+      "role": "training_fusion",
+      "displacement_range_m": 8.05420899677e-05,
+      "peak_displacement_m": 4.05171604729e-05,
+      "rms_displacement_m": 1.9665532553901164e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999995749541686,
+      "acceleration_derivative_correlation": 0.9983874907091181,
+      "correlation_to_reference_displacement": 0.9999999791160958
+    },
+    "S_C07": {
+      "node_id": 3461,
+      "role": "training_fusion_reference",
+      "displacement_range_m": 8.18862784588e-05,
+      "peak_displacement_m": 4.11937723125e-05,
+      "rms_displacement_m": 1.999562054674841e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999995749020525,
+      "acceleration_derivative_correlation": 0.998387531685725,
+      "correlation_to_reference_displacement": 0.9999999999999998
+    },
+    "S_C08": {
+      "node_id": 3454,
+      "role": "training_fusion",
+      "displacement_range_m": 8.188627846029999e-05,
+      "peak_displacement_m": 4.11937723133e-05,
+      "rms_displacement_m": 1.999562054710601e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999995749020523,
+      "acceleration_derivative_correlation": 0.998387531685725,
+      "correlation_to_reference_displacement": 0.9999999999999998
+    },
+    "S_C06": {
+      "node_id": 3396,
+      "role": "hidden_validation",
+      "displacement_range_m": 8.3044475178e-05,
+      "peak_displacement_m": 4.17764018498e-05,
+      "rms_displacement_m": 2.0278150739650425e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999995751124664,
+      "acceleration_derivative_correlation": 0.9983875710333106,
+      "correlation_to_reference_displacement": 0.9999999985313524
+    }
+  },
+  "force": {
+    "source_file": "D:\\AnsysPinn\\model1 data ectraction\\Force2_x_input.txt",
+    "ansys_force_type": "distributed resultant face force",
+    "direction": "X",
+    "peak_raw_face_force_N": 11103.0,
+    "dominant_frequency_hz": 14.999999999999986,
+    "expected_frequency_hz": 15.0,
+    "reduced_force_status": "RAW FACE FORCE ONLY. Do not use directly as the reference-coordinate PINN force until generalized/modal force projection is completed."
+  },
+  "ansys_transient": {
+    "result_file": "D:\\AnsysPinn\\table.wbpz\\table_files\\dp0\\SYS-1\\MECH\\file.rst",
+    "solver_time_step_seconds": 0.0010000000000000009,
+    "numerical_damping": 0.005,
+    "physical_damping": 0.0
+  },
+  "usage": {
+    "displacement": "Primary measurement for later modal transformation and fusion.",
+    "velocity": "ANSYS diagnostic and derivative cross-check.",
+    "acceleration": "ANSYS diagnostic and derivative cross-check.",
+    "raw_face_force": "FE loading record only. Equivalent generalized force pending."
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "purpose": "Phase-2 multi-sensor modal preprocessing before PINN force projection.",
+  "status": "OBSERVATION PREPROCESSING ONLY - GENERALIZED FORCE STILL PENDING",
+  "n_samples": 10000,
+  "dt_seconds": 0.0010000000000000009,
+  "total_structural_mass_kg": 78500.0,
+  "training_sensors": [
+    "S_C02",
+    "S_C05",
+    "S_C07",
+    "S_C08"
+  ],
+  "reference_sensor": "S_C07",
+  "hidden_sensor": "S_C06",
+  "X": {
+    "direction": "X",
+    "target_mode": 1,
+    "reference_sensor": "S_C07",
+    "reference_phi": 0.0040395531850456285,
+    "frequency_hz": 20.083511908707504,
+    "equivalent_mass_kg": 61282.057655068886,
+    "equivalent_stiffness_N_per_m": 975826015.1860691,
+    "training_sensor_phi": {
+      "S_C02": 0.003974164254243276,
+      "S_C05": 0.003974164254357907,
+      "S_C07": 0.0040395531850456285,
+      "S_C08": 0.004039553185117531
+    },
+    "training_reconstruction_nrmse_percent": 0.01924013540515148,
+    "reference_vs_direct_nrmse_percent": 0.01892565613923953,
+    "reference_vs_direct_correlation": 0.9999999949553005,
+    "hidden_sensor": "S_C06",
+    "hidden_displacement_nrmse_percent": 0.009739194866741279,
+    "hidden_displacement_r2": 0.9999999905147962,
+    "hidden_displacement_correlation": 0.9999999984938693,
+    "dominant_reference_frequency_hz": 14.999999999999986,
+    "velocity_derivative_correlation": 0.9999995750182986,
+    "acceleration_derivative_correlation": 0.9983875484982838
+  },
+  "Y": {
+    "direction": "Y",
+    "target_mode": 2,
+    "reference_sensor": "S_C07",
+    "reference_phi": 0.004010212693663175,
+    "frequency_hz": 20.65810212818975,
+    "equivalent_mass_kg": 62182.07143064212,
+    "equivalent_stiffness_N_per_m": 1047624779.5927118,
+    "training_sensor_phi": {
+      "S_C02": 0.004059136687693855,
+      "S_C05": 0.004059136687691196,
+      "S_C07": 0.004010212693663175,
+      "S_C08": 0.004010212693700022
+    },
+    "training_reconstruction_nrmse_percent": 0.028625995733416097,
+    "reference_vs_direct_nrmse_percent": 0.028979305024758116,
+    "reference_vs_direct_correlation": 0.9999999679060836,
+    "hidden_sensor": "S_C06",
+    "hidden_displacement_nrmse_percent": 0.15588354383571382,
+    "hidden_displacement_r2": 0.9999975700304213,
+    "hidden_displacement_correlation": 0.9999988634452576,
+    "dominant_reference_frequency_hz": 14.999999999999986,
+    "velocity_derivative_correlation": 0.9999990502727105,
+    "acceleration_derivative_correlation": 0.9981617558912722
+  },
+  "Z": {
+    "direction": "Z",
+    "target_mode": 4,
+    "secondary_mode": 7,
+    "reference_sensor": "S_C07",
+    "phi4_reference": 0.00492423376389462,
+    "phi7_reference": 0.003439538544721995,
+    "frequency_hz": 51.43420361650685,
+    "equivalent_mass_kg": 41240.38174656615,
+    "equivalent_stiffness_N_per_m": 4307114855.966703,
+    "modal_matrix_condition_number": 1.5340644124117317,
+    "training_two_mode_reconstruction_nrmse_percent": 6.690717197545467e-10,
+    "hidden_sensor": "S_C06",
+    "hidden_two_mode_nrmse_percent": 2.9859034040031307e-09,
+    "hidden_two_mode_correlation": 0.9999999999999994,
+    "q7_to_q4_rms_ratio": 0.04041210871386337,
+    "reference_mode7_to_mode4_rms_contribution_ratio": 0.02822754001119824,
+    "isolated_mode4_vs_direct_reference_nrmse_percent": 2.747083773989318,
+    "dominant_isolated_mode4_frequency_hz": 14.999999999999986,
+    "velocity_derivative_correlation": 0.9999417308258275,
+    "acceleration_derivative_correlation": 0.9874865947230473
+  },
+  "raw_force_consistency": {
+    "max_abs_X_minus_Y_N": 0.0,
+    "max_abs_X_minus_Z_N": 0.0,
+    "status": "RAW FACE FORCES ONLY. NOT PINN EQUIVALENT FORCES."
+  },
+  "output_files": {
+    "X_reference_observation": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_X_Reference_Observation.csv",
+    "Y_reference_observation": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_Y_Reference_Observation.csv",
+    "Z_mode4_reference_observation": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_Z_Mode4_Reference_Observation.csv",
+    "hidden_validation": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_Hidden_Sensor_Validation.csv",
+    "Z_modal_diagnostics": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_Z_Mode4_Mode7_Diagnostics.csv",
+    "summary": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_Preprocessing_Summary.csv"
+  },
+  "next_required_step": "Compute generalized modal force Q_r(t)=phi_r^T f(t) for Modes 1, 2 and 4, then convert to S_C07 reference-coordinate force F_eq(t)=Q_r(t)/phi_ref."
+}

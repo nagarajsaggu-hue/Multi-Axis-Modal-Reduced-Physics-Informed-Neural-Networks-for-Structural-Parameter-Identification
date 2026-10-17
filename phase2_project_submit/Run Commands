@@ -1,0 +1,10 @@
+source venv/bin/activate
+
+sbatch --job-name=phase2_X slurm/gpu.sh scripts/run_train.py --tag X_run
+sbatch --job-name=phase2_Y slurm/gpu.sh scripts/run_train.py --tag Y_run
+sbatch --job-name=phase2_Z slurm/gpu.sh scripts/run_train.py --tag Z_run
+python scripts/run_train.py --tag Z_run
+python scripts/run_evaluate.py --tag Z_run
+python scripts/run_plot.py --tag Z_run
+bash update_multiaxis_docs.sh
+tar --exclude='./venv' -czvf phase1_project_backup.tar.gz .

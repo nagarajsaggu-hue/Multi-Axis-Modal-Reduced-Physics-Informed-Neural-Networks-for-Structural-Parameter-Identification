@@ -1,0 +1,71 @@
+{
+  "phase": "phase2",
+  "direction": "Z",
+  "tag": "Z_run",
+  "identified": {
+    "K_N_per_m": 4303617210.010863,
+    "C_N_s_per_m": 4433.640131707078
+  },
+  "fixed_inputs": {
+    "mass_kg": 41240.38174656615,
+    "force_source": "equivalent_csv",
+    "force_column": "Equivalent_Force_Z_Mode4 (N)",
+    "force_scale_N": 8532.996223365775,
+    "equivalent_force_peak_N": 8532.996223365775,
+    "force_frequency_hz": 15.0,
+    "displacement_scale_m": 2e-06
+  },
+  "reference": {
+    "sensor": "S_C07",
+    "node_id": 3461,
+    "mode": 4,
+    "phi_reference": 0.00492423376389462,
+    "frequency_hz": 51.43420361650685,
+    "equivalent_mass_kg": 41240.38174656615,
+    "equivalent_stiffness_N_per_m": 4307114855.966703
+  },
+  "derived": {
+    "omega_n_rad_s": 323.03938844269896,
+    "f_n_hz": 51.41331548403843,
+    "zeta": 0.0001663996037321877
+  },
+  "scaled": {
+    "k_hat": 1.0087001323699951,
+    "c_hat": 1.039175458572572e-06,
+    "m_hat": 9.66609633170544e-06,
+    "reference_k_hat": 1.0095199255268847
+  },
+  "run": {
+    "iterations": 28000,
+    "runtime_seconds": 367.3847141265869,
+    "seed": 0,
+    "n_samples": 10000,
+    "n_train": 8000,
+    "n_holdout": 2000,
+    "num_domain": 10000,
+    "t_range": [
+      0.001,
+      10.0
+    ],
+    "enforce_positive": true,
+    "holdout_every": 5,
+    "optimizer": "adam",
+    "learning_rate": 0.001
+  },
+  "fit": {
+    "rmse_m": 3.4980606487111546e-09,
+    "relative_rmse": 0.0024361858648602537,
+    "max_abs_error_m": 1.2913329751757285e-08,
+    "r_squared": 0.9999940649983403,
+    "note": "computed over all samples, including the holdout locations"
+  },
+  "validation": {
+    "n_train": 8000,
+    "n_holdout": 2000,
+    "rmse_train_m": 3.4814438223937304e-09,
+    "rmse_holdout_m": 3.5637532401070725e-09,
+    "relative_rmse_holdout": 0.0024807799785488073,
+    "r_squared_holdout": 0.999993845730581,
+    "note": "held-out points were never used as displacement observations"
+  }
+}

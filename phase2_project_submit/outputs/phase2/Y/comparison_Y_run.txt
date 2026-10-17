@@ -1,0 +1,28 @@
+================================================================================================
+PHASE-2 EVALUATION — Y
+================================================================================================
+Reference coordinate : S_C07 / Node 3461 / Mode 2
+Equivalent mass      : 62182.071430642 kg
+Physics force        : Equivalent_Force_Y (N) (peak 11198.090314 N)
+
+method                    K (N/m)       C (N.s/m)     f_n (Hz)     zeta (%)   note
+----------------------------------------------------------------------------------
+PINN                 1.045455e+09    3.894639e+03    20.636701   0.02415194   17000 iterations, equivalent-force PINN
+Least squares        1.045261e+09   -3.728526e+05    20.634779  -2.31239649   diagnostic, force R2 = 0.993631
+ANSYS modal          1.047625e+09               -    20.658102            -   S_C07 / Node 3461 / Mode 2 (authoritative Phase-2 reference)
+
+PINN vs ANSYS modal:
+  K difference       : -0.207090 %
+  frequency difference: -0.103599 %
+
+PINN holdout validation:
+  RMSE               : 6.160486e-08 m
+  relative RMSE      : 0.355181 %
+  R2                 : 0.999987385
+
+Transient least-squares diagnostic:
+  force R2           : 0.993630961
+  relative force RMSE: 7.980626 %
+  design condition   : 1.048315e+02
+  interpretation     : diagnostic only; ANSYS-exported velocity/acceleration are not PINN training targets.
+================================================================================================

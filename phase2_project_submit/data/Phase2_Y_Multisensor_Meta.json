@@ -1,0 +1,105 @@
+{
+  "experiment": "Phase2_Y_multisensor",
+  "direction": "Y",
+  "force_configuration": "[0, F_Y(t), 0]",
+  "n_samples": 10000,
+  "start_time_seconds": 0.001,
+  "end_time_seconds": 10.0,
+  "duration_seconds": 9.999,
+  "dt_seconds": 0.0010000000000000009,
+  "total_structural_mass_kg": 78500.0,
+  "post26": {
+    "required_variables": 16,
+    "allocated_numvar": 50
+  },
+  "reference_coordinate": {
+    "sensor": "S_C07",
+    "node_id": 3461,
+    "direction": "Y",
+    "reference_mode": 2,
+    "phi_reference": 0.004010212693663175,
+    "natural_frequency_hz": 20.65810212818975,
+    "equivalent_generalized_mass_kg": 62182.07143064212,
+    "equivalent_generalized_stiffness_N_per_m": 1047624779.5927118,
+    "modal_source_file": "D:\\AnsysPinn\\model1 data ectraction\\modal_purity_diagnostic.json"
+  },
+  "training_fusion_sensors": [
+    "S_C02",
+    "S_C05",
+    "S_C07",
+    "S_C08"
+  ],
+  "hidden_validation_sensor": "S_C06",
+  "sensors": {
+    "S_C02": {
+      "node_id": 3514,
+      "role": "training_fusion",
+      "displacement_range_m": 7.30266970332e-05,
+      "peak_displacement_m": 3.66776240174e-05,
+      "rms_displacement_m": 1.7557892525938673e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999989681657693,
+      "acceleration_derivative_correlation": 0.9981320882308018,
+      "correlation_to_reference_displacement": 0.9999998701034114
+    },
+    "S_C05": {
+      "node_id": 3402,
+      "role": "training_fusion",
+      "displacement_range_m": 7.302669703299999e-05,
+      "peak_displacement_m": 3.66776240173e-05,
+      "rms_displacement_m": 1.755789252588555e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999989681657697,
+      "acceleration_derivative_correlation": 0.9981320882308206,
+      "correlation_to_reference_displacement": 0.999999870103412
+    },
+    "S_C07": {
+      "node_id": 3461,
+      "role": "training_fusion_reference",
+      "displacement_range_m": 7.213881355090001e-05,
+      "peak_displacement_m": 3.62269910313e-05,
+      "rms_displacement_m": 1.734144974751502e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999991271611189,
+      "acceleration_derivative_correlation": 0.9981895748956808,
+      "correlation_to_reference_displacement": 1.0
+    },
+    "S_C08": {
+      "node_id": 3454,
+      "role": "training_fusion",
+      "displacement_range_m": 7.21388135514e-05,
+      "peak_displacement_m": 3.62269910315e-05,
+      "rms_displacement_m": 1.7341449747596457e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999991271611193,
+      "acceleration_derivative_correlation": 0.9981895748958137,
+      "correlation_to_reference_displacement": 0.9999999999999998
+    },
+    "S_C06": {
+      "node_id": 3396,
+      "role": "hidden_validation",
+      "displacement_range_m": 7.32010450258e-05,
+      "peak_displacement_m": 3.67469172589e-05,
+      "rms_displacement_m": 1.759113909115775e-05,
+      "dominant_response_frequency_hz": 14.999999999999986,
+      "velocity_derivative_correlation": 0.9999994037052117,
+      "acceleration_derivative_correlation": 0.9982898054319653,
+      "correlation_to_reference_displacement": 0.9999991744290483
+    }
+  },
+  "force": {
+    "source_file": "D:\\AnsysPinn\\model1 data ectraction\\Force2_Y_input.txt",
+    "ansys_force_type": "distributed resultant face force",
+    "direction": "Y",
+    "peak_raw_face_force_N": 11103.0,
+    "dominant_frequency_hz": 14.999999999999986,
+    "expected_frequency_hz": 15.0,
+    "reduced_force_status": "RAW FACE FORCE ONLY. Generalized-force projection still pending."
+  },
+  "ansys_transient": {
+    "result_file": "D:\\AnsysPinn\\table.wbpz\\table_files\\dp0\\SYS-1\\MECH\\file.rst",
+    "solver_time_step_seconds": 0.0010000000000000009,
+    "numerical_damping": 0.005,
+    "physical_damping": 0.0
+  }
+}

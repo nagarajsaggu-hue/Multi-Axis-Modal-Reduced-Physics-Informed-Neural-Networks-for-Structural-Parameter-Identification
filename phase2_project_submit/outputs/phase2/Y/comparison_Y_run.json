@@ -1,0 +1,92 @@
+{
+  "phase": "phase2",
+  "direction": "Y",
+  "reference_coordinate": {
+    "sensor": "S_C07",
+    "node_id": 3461,
+    "mode": 2,
+    "mass_kg": 62182.07143064212
+  },
+  "force": {
+    "source": "equivalent_csv",
+    "column": "Equivalent_Force_Y (N)",
+    "peak_N": 11198.09031376405
+  },
+  "rows": [
+    {
+      "method": "PINN",
+      "K_N_per_m": 1045455256.3514657,
+      "C_N_s_per_m": 3894.639346252749,
+      "f_n_hz": 20.636700639266355,
+      "zeta": 0.000241519351274335,
+      "note": "17000 iterations, equivalent-force PINN"
+    },
+    {
+      "method": "Least squares",
+      "K_N_per_m": 1045260540.2654175,
+      "C_N_s_per_m": -372852.59324477316,
+      "f_n_hz": 20.63477875658775,
+      "zeta": -0.023123964921635938,
+      "note": "diagnostic, force R2 = 0.993631"
+    },
+    {
+      "method": "ANSYS modal",
+      "K_N_per_m": 1047624779.5927118,
+      "C_N_s_per_m": null,
+      "f_n_hz": 20.65810212818975,
+      "zeta": null,
+      "mode": 2,
+      "mass_kg": 62182.07143064212,
+      "phi_reference": 0.004010212693663175,
+      "sensor": "S_C07",
+      "node_id": 3461,
+      "note": "S_C07 / Node 3461 / Mode 2 (authoritative Phase-2 reference)"
+    }
+  ],
+  "fit": {
+    "rmse_m": 6.151502491561503e-08,
+    "relative_rmse": 0.003546783848612776,
+    "max_abs_error_m": 2.0393504602977844e-07,
+    "r_squared": 0.9999874203157638,
+    "note": "computed over all samples, including the holdout locations"
+  },
+  "validation": {
+    "n_train": 8000,
+    "n_holdout": 2000,
+    "rmse_train_m": 6.149254467565356e-08,
+    "rmse_holdout_m": 6.160486384283867e-08,
+    "relative_rmse_holdout": 0.0035518075832607025,
+    "r_squared_holdout": 0.9999873846540023,
+    "note": "held-out points were never used as displacement observations"
+  },
+  "least_squares_diagnostic": {
+    "K": 1045260540.2654175,
+    "C": -372852.59324477316,
+    "f_n_hz": 20.63477875658775,
+    "zeta": -0.023123964921635938,
+    "omega_n_rad_s": 129.6521387002936,
+    "r_squared": 0.9936309605267672,
+    "force_rmse_N": 587.3887144127833,
+    "force_relative_rmse": 0.07980626211791068,
+    "rank": 2,
+    "condition_number": 104.83148370359704,
+    "n_samples": 10000,
+    "force_source": "equivalent_csv",
+    "force_column": "Equivalent_Force_Y (N)",
+    "note": "Diagnostic only: uses ANSYS-exported velocity and acceleration with the approved equivalent-force history."
+  },
+  "agreement": {
+    "pinn_vs_ansys_modal": {
+      "K_ratio": 0.9979291027823057,
+      "K_percent_diff": -0.20708972176942553,
+      "f_n_ratio": 0.9989640147584423,
+      "f_n_percent_diff": -0.10359852415576425
+    },
+    "pinn_vs_least_squares": {
+      "K_ratio": 1.0001862847381562,
+      "K_percent_diff": 0.018628473815609857,
+      "C_ratio": -0.010445520339175878,
+      "C_percent_diff": -101.04455203391758
+    }
+  }
+}

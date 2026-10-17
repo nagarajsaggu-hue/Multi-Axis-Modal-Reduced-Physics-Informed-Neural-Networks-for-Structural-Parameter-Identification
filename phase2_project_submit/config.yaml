@@ -1,0 +1,279 @@
+# =====================================================================
+# Phase 2 PINN system identification configuration
+#
+# IMPORTANT:
+#   - Keep ALL three X/Y/Z case blocks in this one file.
+#   - Uncomment EXACTLY ONE active_direction line.
+#   - The approved Phase-2 CSVs are never edited by the training pipeline.
+#
+# FINAL VALIDATED PRODUCTION ITERATIONS:
+#   X = 19000
+#   Y = 17000
+#   Z = 28000
+#
+# These direction-specific values were established from convergence,
+# parameter stability, displacement fit, and holdout validation.
+#
+# For normal production runs, DO NOT pass --iterations manually.
+# The active direction automatically selects its validated iteration count.
+# =====================================================================
+
+phase: "phase2"
+
+# ---------------------------------------------------------------------
+# ACTIVE DIRECTION — uncomment exactly ONE
+# ---------------------------------------------------------------------
+#active_direction: X
+#active_direction: Y
+active_direction: Z
+
+# ---------------------------------------------------------------------
+# AUTHORITATIVE PHASE-2 PROVENANCE / QC
+# ---------------------------------------------------------------------
+provenance:
+  preprocessing_qc: data/Phase2_Preprocessing_QC.json
+  force_projection_qc: data/Phase2_Force_Projection_QC.json
+  preprocessing_summary: data/Phase2_Preprocessing_Summary.csv
+
+# ---------------------------------------------------------------------
+# APPROVED DATA CONTRACT
+# ---------------------------------------------------------------------
+quality:
+  expected_n_samples: 10000
+  expected_dt_seconds: 1.0e-3
+  expected_t_start_seconds: 1.0e-3
+  expected_t_end_seconds: 10.0
+
+  # Tight tolerances are intentional because these are frozen,
+  # professor-approved simulation datasets.
+  scalar_rtol: 1.0e-9
+  time_atol_seconds: 1.0e-10
+  force_atol_N: 1.0e-6
+
+# ---------------------------------------------------------------------
+# COMMON NETWORK — preserved from the proven Phase-1 codebase
+# ---------------------------------------------------------------------
+network:
+  layers: [1, 64, 64, 64, 64, 1]
+  activation: "sin"
+  initializer: "Glorot uniform"
+
+  fourier_features:
+    enabled: true
+    n: 128
+    f_min: 5.0
+    f_max: 40.0
+
+# ---------------------------------------------------------------------
+# COMMON TRAINING
+#
+# iterations: 30000 is retained only as the common fallback/default.
+#
+# Every approved X/Y/Z case below overrides this value with its validated
+# production iteration count.
+#
+# Normal production runs must therefore omit --iterations.
+# ---------------------------------------------------------------------
+training:
+  iterations: 30000
+  learning_rate: 1.0e-3
+  num_domain: 10000
+  holdout_every: 5
+  enforce_positive: true
+  loss_weights: [1.0, 100.0]
+
+  # Scaled initial values.
+  k_hat_init: 1.0
+  c_hat_init: 1.0e-4
+
+# ---------------------------------------------------------------------
+# OUTPUT
+# config.py automatically appends /X, /Y or /Z.
+# ---------------------------------------------------------------------
+output:
+  root: outputs/phase2
+
+# =====================================================================
+# DIRECTION-SPECIFIC CASES
+# =====================================================================
+cases:
+
+  # -------------------------------------------------------------------
+  # X — S_C07 reference coordinate, Mode 1
+  #
+  # VALIDATED TRAINING:
+  #   iterations = 19000
+  #
+  # Confirmation result:
+  #   K error              = -0.175463 %
+  #   frequency error      = -0.087770 %
+  #   relative fit RMSE    =  0.263400 %
+  #   relative holdout RMSE=  0.263542 %
+  #   holdout R2           =  0.999993055
+  # -------------------------------------------------------------------
+  X:
+    data:
+      csv: data/Phase2_X_PINN_Input.csv
+      meta: data/Phase2_X_Multisensor_Meta.json
+
+      time_column: "Time (s)"
+      observation_column: "Displacement_X (m)"
+      velocity_column: "Velocity_X (m/s)"
+      acceleration_column: "Acceleration_X (m/s^2)"
+
+      # Raw force is retained only for traceability / QC.
+      raw_force_column: "Raw_Face_Force_X (N)"
+
+      # This is the ONLY valid physics RHS for the reduced PINN.
+      force_column: "Equivalent_Force_X (N)"
+
+      t_min: null
+      t_max: null
+
+    reference:
+      sensor: "S_C07"
+      node_id: 3461
+      mode: 1
+      phi_reference: 0.0040395531850456285
+      frequency_hz: 20.083511908707504
+      equivalent_mass_kg: 61282.057655068886
+      equivalent_stiffness_N_per_m: 975826015.1860691
+
+    physics:
+      force_source: "equivalent_csv"
+      force_frequency: 15.0
+
+      # Peak of the approved equivalent-force history.
+      # Retained for reporting/backward compatibility.
+      # The PINN physics residual consumes the CSV force history itself.
+      force_amplitude: 11120.223715862736
+
+    scaling:
+      displacement: 1.0e-4
+      force: 11120.223715862736
+
+    network_overrides:
+      fourier_features:
+        f_max: 40.0
+
+    training_overrides:
+      # FINAL validated X production iteration count.
+      iterations: 19000
+
+      c_hat_init: 1.0e-4
+
+  # -------------------------------------------------------------------
+  # Y — S_C07 reference coordinate, Mode 2
+  #
+  # VALIDATED TRAINING:
+  #   iterations = 17000
+  #
+  # Confirmation result:
+  #   K error              = -0.207090 %
+  #   frequency error      = -0.103599 %
+  #   relative fit RMSE    =  0.354678 %
+  #   relative holdout RMSE=  0.355181 %
+  #   holdout R2           =  0.999987385
+  # -------------------------------------------------------------------
+  Y:
+    data:
+      csv: data/Phase2_Y_PINN_Input.csv
+      meta: data/Phase2_Y_Multisensor_Meta.json
+
+      time_column: "Time (s)"
+      observation_column: "Displacement_Y (m)"
+      velocity_column: "Velocity_Y (m/s)"
+      acceleration_column: "Acceleration_Y (m/s^2)"
+
+      raw_force_column: "Raw_Face_Force_Y (N)"
+      force_column: "Equivalent_Force_Y (N)"
+
+      t_min: null
+      t_max: null
+
+    reference:
+      sensor: "S_C07"
+      node_id: 3461
+      mode: 2
+      phi_reference: 0.004010212693663175
+      frequency_hz: 20.65810212818975
+      equivalent_mass_kg: 62182.07143064212
+      equivalent_stiffness_N_per_m: 1047624779.5927118
+
+    physics:
+      force_source: "equivalent_csv"
+      force_frequency: 15.0
+      force_amplitude: 11198.09031376405
+
+    scaling:
+      displacement: 1.0e-4
+      force: 11198.09031376405
+
+    network_overrides:
+      fourier_features:
+        f_max: 40.0
+
+    training_overrides:
+      # FINAL validated Y production iteration count.
+      iterations: 17000
+
+      c_hat_init: 1.0e-4
+
+  # -------------------------------------------------------------------
+  # Z — isolated S_C07 Mode-4 reference coordinate
+  #
+  # Mode 7 was removed during approved multi-sensor preprocessing.
+  #
+  # VALIDATED TRAINING:
+  #   iterations = 28000
+  #
+  # Confirmation result:
+  #   K error              = -0.081206 %
+  #   frequency error      = -0.040611 %
+  #   relative fit RMSE    =  0.243619 %
+  #   relative holdout RMSE=  0.248078 %
+  #   holdout R2           =  0.999993846
+  # -------------------------------------------------------------------
+  Z:
+    data:
+      csv: data/Phase2_Z_Mode4_PINN_Input.csv
+      meta: data/Phase2_Z_Multisensor_Meta.json
+
+      time_column: "Time (s)"
+      observation_column: "Displacement_Z_Mode4 (m)"
+      velocity_column: "Velocity_Z_Mode4 (m/s)"
+      acceleration_column: "Acceleration_Z_Mode4 (m/s^2)"
+
+      raw_force_column: "Raw_Face_Force_Z (N)"
+      force_column: "Equivalent_Force_Z_Mode4 (N)"
+
+      t_min: null
+      t_max: null
+
+    reference:
+      sensor: "S_C07"
+      node_id: 3461
+      mode: 4
+      phi_reference: 0.00492423376389462
+      frequency_hz: 51.43420361650685
+      equivalent_mass_kg: 41240.38174656615
+      equivalent_stiffness_N_per_m: 4307114855.966703
+
+    physics:
+      force_source: "equivalent_csv"
+      force_frequency: 15.0
+      force_amplitude: 8532.996223365775
+
+    scaling:
+      displacement: 2.0e-6
+      force: 8532.996223365775
+
+    network_overrides:
+      fourier_features:
+        f_max: 60.0
+
+    training_overrides:
+      # FINAL validated Z production iteration count.
+      iterations: 28000
+
+      c_hat_init: 2.0e-7

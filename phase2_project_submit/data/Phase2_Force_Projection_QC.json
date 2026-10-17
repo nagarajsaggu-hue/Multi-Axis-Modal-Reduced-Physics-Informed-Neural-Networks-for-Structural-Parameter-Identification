@@ -1,0 +1,67 @@
+{
+  "method": "Exact FE load-vector projection using 1-Pa assembled surface load, NOD2SOLV ordering map and original mass-normalized modal vectors.",
+  "formula": "Q_r(t)=phi_r^T f_FE(t); F_eq(t)=Q_r(t)/phi_ref",
+  "loaded_element_count": 180,
+  "solid_face_number": 6,
+  "loaded_area_m2": 19.999999999998558,
+  "pressure_peak_Pa": 555.15000000004,
+  "directions": {
+    "X": {
+      "target_mode": 1,
+      "phi_reference": 0.0040395531850456285,
+      "unit_pressure_generalized_force_Q_1Pa": 0.0809163922,
+      "loaded_area_m2": 19.999999999998558,
+      "equivalent_force_per_raw_force": 1.0015512668524484,
+      "raw_force_peak_N": 11103.0,
+      "equivalent_force_peak_N": 11120.223715862736,
+      "output_file": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_X_PINN_Input.csv",
+      "status": "PRESERVED_FROM_SUCCESSFUL_PREVIOUS_RUN"
+    },
+    "Y": {
+      "target_mode": 2,
+      "phi_reference": 0.004010212693663175,
+      "unit_pressure_generalized_force_Q_1Pa": 0.0808911536,
+      "loaded_area_m2": 19.999999999998558,
+      "equivalent_force_per_raw_force": 1.008564380236337,
+      "raw_force_peak_N": 11103.0,
+      "equivalent_force_peak_N": 11198.09031376405,
+      "output_file": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_Y_PINN_Input.csv",
+      "status": "PRESERVED_FROM_SUCCESSFUL_PREVIOUS_RUN"
+    },
+    "Z": {
+      "target_mode": 4,
+      "phi_reference": 0.00492423376389462,
+      "unit_pressure_generalized_force_Q_1Pa": 0.0756884952,
+      "loaded_area_m2": 19.999999999998558,
+      "equivalent_force_per_raw_force": 0.7685306875047982,
+      "raw_force_peak_N": 11103.0,
+      "equivalent_force_peak_N": 8532.996223365775,
+      "all_10_generalized_modal_forces_for_1Pa": [
+        9.47222783e-13,
+        -3.29879062e-13,
+        -7.21764448e-14,
+        0.0756884952,
+        -1.34899036e-13,
+        8.51964332e-13,
+        0.0160809546,
+        -4.15148168e-13,
+        1.64273976e-14,
+        2.12884159e-12
+      ],
+      "output_file": "D:\\AnsysPinn\\model1 data ectraction\\Phase2_Z_Mode4_PINN_Input.csv",
+      "status": "RECOVERED_SUCCESSFULLY"
+    }
+  },
+  "z_phase1_crosscheck": {
+    "old_node3575_phi_mode4": -0.0004175097113607235,
+    "old_equivalent_force_peak_N": 95073.0,
+    "old_generalized_Q4_peak": 39.693900788198064,
+    "new_generalized_Q4_peak": 42.018468110283024,
+    "difference_percent": 5.85623301294719
+  },
+  "original_workbench_files_modified": false,
+  "x_y_recomputed": false,
+  "z_recovery_workspace_MB": 1024,
+  "z_recovery_database_MB": 256,
+  "scratch_directory": "D:\\AnsysPinn\\model1 data ectraction\\_force_projection_work\\Z_recovery"
+}
